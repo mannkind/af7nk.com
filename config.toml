@@ -1,4 +1,11 @@
-baseurl = "https://www.af7nk.com/"
+baseurl = "https://af7nk.com/"
 languageCode = "en-us"
 title = "AF7NK"
 theme = "blueberry-detox"
+
+enableRobotsTXT = true
+enableGitInfo   = false
+enableEmoji     = true
+
+[author]
+  name = "Dustin Brewer"
