@@ -1,7 +1,7 @@
 baseurl = "https://af7nk.com/"
 languageCode = "en-us"
 title = "AF7NK"
-theme = "blueberry-detox"
+theme = "dead-simple"
 
 enableRobotsTXT = true
 enableGitInfo   = false

@@ -1,36 +1,51 @@
-// For format details, see https://aka.ms/vscode-remote/devcontainer.json or the definition README at
-// https://github.com/microsoft/vscode-dev-containers/tree/master/containers/go
 {
-	"name": "Hugo",
-	"dockerFile": "Dockerfile",
-	"runArgs": [
-		// Uncomment the next line to use a non-root user. On Linux, this will prevent
-		// new files getting created as root, but you may need to update the USER_UID
-		// and USER_GID in .devcontainer/Dockerfile to match your user if not 1000.
-		// "-u", "vscode",
-		"--cap-add=SYS_PTRACE",
-		"--security-opt",
-		"seccomp=unconfined",
-		"-p",
-		"1313:1313",
-		"-v",
-		"${env:HOME}${env:USERPROFILE}/.ssh:/root/.ssh-localhost:ro"
-	],
-	// Copy the contents to the correct location and set permissions
-	"postCreateCommand": "mkdir -p ~/.ssh && cp -r ~/.ssh-localhost/* ~/.ssh && chmod 700 ~/.ssh && chmod 600 ~/.ssh/*",
-	// Use 'settings' to set *default* container specific settings.json values on container create. 
-	// You can edit these settings after create using File > Preferences > Settings > Remote.
-	"settings": {
-		"terminal.integrated.shell.linux": "/bin/bash",
-		"go.gopath": "/go"
-	},
-	// Uncomment the next line if you want to publish any ports.
-	// "appPort": [],
-	// Uncomment the next line to run commands after the container is created.
-	// "postCreateCommand": "go version",
-	// Add the IDs of extensions you want installed when the container is created in the array below.
-	"extensions": [
-		"ms-vscode.go",
-		"ms-azuretools.vscode-docker"
-	]
+  "name": "Hugo & pnpm",
+
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+
+  // 👇 Features to add to the Dev Container. More info: https://containers.dev/implementors/features.
+  // "features": { "ghcr.io/devcontainers/features/docker-in-docker:2": {} },
+
+  // 👇 Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+
+  // Configure tool-specific properties.
+  "customizations": {
+    // Configure properties specific to VS Code.
+    "vscode": {
+      // Set *default* container specific settings.json values on container create.
+      "settings": {
+        "html.format.templating": true
+      },
+      // Add the IDs of extensions you want installed when the container is created.
+      "extensions": [
+        // https://marketplace.visualstudio.com/items?itemName=eliostruyf.vscode-front-matter
+        "eliostruyf.vscode-front-matter",
+        // https://marketplace.visualstudio.com/items?itemName=rusnasonov.vscode-hugo
+        "rusnasonov.vscode-hugo",
+        // https://marketplace.visualstudio.com/items?itemName=budparr.language-hugo-vscode
+        "budparr.language-hugo-vscode",
+        // https://marketplace.visualstudio.com/items?itemName=eliostruyf.vscode-hugo-themer
+        "eliostruyf.vscode-hugo-themer",
+        // https://marketplace.visualstudio.com/items?itemName=kaellarkin.hugo-shortcode-syntax
+        "kaellarkin.hugo-shortcode-syntax",
+
+        // "csstools.postcss",
+
+        // "esbenp.prettier-vscode",
+        // "tamasfe.even-better-toml",
+        // "naumovs.color-highlight",
+        // "GitHub.vscode-pull-request-github",
+        // "eamodio.gitlens",
+        "davidanson.vscode-markdownlint",
+        "streetsidesoftware.code-spell-checker"
+      ]
+    }
+  },
+
+  "remoteUser": "vscode",
+
+  "postCreateCommand": "pnpm install-completion zsh"
 }
